@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+  </head>
+  <body>
+    <ul id='user-list'>
+    </ul>
+  <script>
+    const BASE_URL = 'https://www.acme-api.com/api'; 
+    async function bootstrap(){
+      const response = await fetch(`${BASE_URL}/users`);
+      const { users } = await response.json();
+      users.forEach(function(user){
+        const userItem = $(`
+          <li>
+            ${ user.email }
+          </li>
+        `);
+        $('#user-list').append(userItem);
+      });
+
+    }
+    bootstrap();
+  </script>
+  </body>
+</html>
